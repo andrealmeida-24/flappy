@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "PressStart2P-Regular";
+  src: local("PressStart2P-Regular"),
+    url("./assets/fonts/PressStart2P-Regular.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #94fdff;
+}
+
+canvas {
+  margin: 0 !important;
+}

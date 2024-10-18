@@ -1,0 +1,2 @@
+export const MENU_SPACE_BETWEEN_ENTRIES = 36;
+export const SCORE_SPACE_BETWEEN_TEXT = 24;
