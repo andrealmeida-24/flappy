@@ -6,7 +6,7 @@ import { MenuItem } from "../types";
 import { Align } from "../utils";
 import { menuGenerator } from "../utils/General";
 
-const MENU_ITEMS = [
+const MENU_ITEMS: MenuItem[] = [
   { scene: "GameScene", text: "New Game" },
   { scene: "ScoreScene", text: "Best Score" },
   { scene: "Controls", text: "Controls" },

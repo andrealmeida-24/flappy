@@ -49,7 +49,7 @@ export class Controls extends BaseScene {
         )
         .setOrigin(0.5, 1);
 
-      Align.scaleToGameWidth(this.game, controlItem.textGO, 0.8);
+      Align.scaleToGameWidth(this.game, controlItem.textGO, 0.5);
       lastMenuPositionY += MENU_SPACE_BETWEEN_ENTRIES;
     });
   }

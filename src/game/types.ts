@@ -11,3 +11,14 @@ export type MenuItem = {
 export type ControlsItem = {
   [key: string]: string;
 } & TextInteraction;
+
+export type GameDifficulty = "easy" | "normal" | "hard";
+
+type GameDifficultyConfig = {
+  pipeVerticalDistanceRange: number[];
+  pipeHorizontalDistanceRange: number[];
+};
+
+export type Difficulties = {
+  [key in GameDifficulty]: GameDifficultyConfig;
+};
