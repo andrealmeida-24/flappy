@@ -2,16 +2,13 @@ import { Scene } from "phaser";
 import { MenuItem } from "../types";
 
 export class BaseScene extends Scene {
+  private background: Phaser.GameObjects.Image | null = null;
   constructor(key: string) {
     super(key);
   }
 
   create() {
-    this.createBackground();
-  }
-
-  public createBackground() {
-    this.add
+    this.background = this.add
       .image(0, 0, "background")
       .setDisplaySize(this.game.scale.width, this.game.scale.height)
       .setOrigin(0, 0)
@@ -35,5 +32,13 @@ export class BaseScene extends Scene {
         scene.scene.start(menuItem.scene);
       }
     });
+  }
+
+  public resize() {
+    this.background!.setPosition(0, 0);
+    this.background!.setDisplaySize(
+      this.game.scale.width,
+      this.game.scale.height
+    );
   }
 }

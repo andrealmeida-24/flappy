@@ -1,6 +1,7 @@
 import { MENU_SPACE_BETWEEN_ENTRIES } from "../constants";
 import { menuStyles } from "../styles";
 import { ControlsItem } from "../types";
+import { Align } from "../utils";
 import { backButtonGenerator } from "../utils/General";
 import { BaseScene } from "./BaseScene";
 
@@ -47,6 +48,8 @@ export class Controls extends BaseScene {
           menuStyles
         )
         .setOrigin(0.5, 1);
+
+      Align.scaleToGameWidth(this.game, controlItem.textGO, 0.8);
       lastMenuPositionY += MENU_SPACE_BETWEEN_ENTRIES;
     });
   }

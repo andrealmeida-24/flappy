@@ -1,8 +1,15 @@
-import { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import StartGame from "./main";
 import { EventBus } from "./EventBus";
 
 import styles from "./Game.module.css";
+import { Loader } from "../components";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;
@@ -16,6 +23,7 @@ interface IProps {
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
   function PhaserGame({ currentActiveScene }, ref) {
     const game = useRef<Phaser.Game | null>(null!);
+    const [isLoading, setIsLoading] = useState(false);
 
     useLayoutEffect(() => {
       if (game.current === null) {
@@ -55,6 +63,40 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(
       };
     }, [currentActiveScene, ref]);
 
-    return <div id="game-container" className={styles.gameContainer}></div>;
+    const onChangeScreen = () => {
+      if (game.current) {
+        game.current.scale.resize(window.innerWidth, window.innerHeight);
+        window.location.reload();
+        setIsLoading(true);
+        if (game.current.scene.scenes.length > 0) {
+          // const currentScene = game.current.scene.scenes[0];
+          // if (currentScene instanceof BaseScene) {
+          //   currentScene.resize();
+          // }
+        }
+      }
+    };
+
+    const _orientation =
+      screen.orientation ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (screen as any).mozOrientation ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (screen as any).msOrientation;
+    _orientation.addEventListener("change", () => {
+      onChangeScreen();
+    });
+
+    window.addEventListener("resize", () => {
+      // onChangeScreen();
+    });
+
+    window.addEventListener("load", () => setIsLoading(false));
+
+    return isLoading ? (
+      <Loader />
+    ) : (
+      <div id="game-container" className={styles.gameContainer}></div>
+    );
   }
 );

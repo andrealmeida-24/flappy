@@ -14,6 +14,7 @@ const MENU_ITEMS = [
 
 export class MainMenu extends BaseScene {
   private menuItems: MenuItem[] = [];
+
   constructor() {
     super("MainMenu");
 
@@ -47,4 +48,6 @@ export class MainMenu extends BaseScene {
     );
     Align.centerHorizontally(this.game, title);
   }
+
+  public resize(): void {}
 }

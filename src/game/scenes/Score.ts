@@ -1,5 +1,6 @@
 import { SCORE_SPACE_BETWEEN_TEXT } from "../constants";
 import { bestScoreTextStyles } from "../styles";
+import { Align } from "../utils";
 import { backButtonGenerator } from "../utils/General";
 import { BaseScene } from "./BaseScene";
 
@@ -24,7 +25,7 @@ export class Score extends BaseScene {
   }
 
   private createBestScoreLabelText() {
-    this.add
+    const text = this.add
       .text(
         this.game.scale.width / 2,
         this.game.scale.height / 2 - SCORE_SPACE_BETWEEN_TEXT,
@@ -32,11 +33,13 @@ export class Score extends BaseScene {
         bestScoreTextStyles
       )
       .setOrigin(0.5, 1);
+
+    Align.scaleToGameWidth(this.game, text, 0.5);
   }
 
   private createBestScoreText() {
     const bestScore = localStorage.getItem("bestScore");
-    this.add
+    const text = this.add
       .text(
         this.game.scale.width / 2,
         this.game.scale.height / 2 + SCORE_SPACE_BETWEEN_TEXT,
@@ -44,5 +47,6 @@ export class Score extends BaseScene {
         bestScoreTextStyles
       )
       .setOrigin(0.5, 1);
+    Align.scaleToGameWidth(this.game, text, 0.1);
   }
 }
